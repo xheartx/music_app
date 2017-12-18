@@ -9,6 +9,7 @@
 
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll'
+import {addClass} from 'common/js/dom'
 export default {
   props: {
     loop: {
@@ -33,9 +34,33 @@ export default {
   methods: {
     _setSliderWidth() {
       this.children = this.$refs.sliderGroup.children
+
+      let width = 0
+      let sliderWidth = this.$refs.slider.clientWidth
+      for (let i = 0; i < this.children.length; i++) {
+        let child = this.children[i]
+        addClass(child, 'slider-item')
+        child.style.width = sliderWidth + 'px'
+        width += sliderWidth
+      }
+
+      if (this.loop) {
+        width += 2 * sliderWidth
+      }
+
+      this.$refs.sliderGroup.style.width = width + 'px'
     },
     _initSlider() {
-
+      this.slider = new BScroll(this.$refs.slider, {
+        scrollX: true,
+        scrollY: false,
+        momentum: false,
+        snap: true,
+        snapLoop: this.loop,
+        snapThreshold: 0.3,
+        snapSeed: 400,
+        click: true
+      })
     }
   }
 }
