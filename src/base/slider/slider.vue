@@ -41,7 +41,7 @@ export default {
     }, 20)
   },
   methods: {
-    _setSliderWidth() {
+    _setSliderWidth() { // 设置轮播总长度
       this.children = this.$refs.sliderGroup.children
 
       let width = 0
@@ -59,7 +59,7 @@ export default {
 
       this.$refs.sliderGroup.style.width = width + 'px'
     },
-    _initDots() {
+    _initDots() { // 初始化
       this.dots = new Array(this.children.length)
     },
     _initSlider() {
