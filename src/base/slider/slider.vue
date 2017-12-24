@@ -38,10 +38,25 @@ export default {
       this._setSliderWidth()
       this._initDots()
       this._initSlider()
+
+      if (this.autoPlay) {
+        this._play()
+      }
     }, 20)
+
+    window.addEventListener('resize', () => {
+      if (!this.slider) {
+        return
+      }
+      this._setSliderWidth(true)
+      this.slider.refresh()
+    })
+  },
+  destroyed () {
+    clearTimeout(this.timer)
   },
   methods: {
-    _setSliderWidth() { // 设置轮播总长度
+    _setSliderWidth(isResize) { // 设置轮播总长度
       this.children = this.$refs.sliderGroup.children
 
       let width = 0
@@ -53,7 +68,7 @@ export default {
         width += sliderWidth
       }
 
-      if (this.loop) {
+      if (this.loop && !isResize) {
         width += 2 * sliderWidth
       }
 
@@ -71,9 +86,33 @@ export default {
           loop: this.loop,
           threshold: 0.3,
           speed: 400
-        },
-        click: true
+        }
+        // click: true
       })
+
+      this.slider.on('scrollEnd', () => {
+        let pageIndex = this.slider.getCurrentPage().pageX
+        this.currentPageIndex = pageIndex
+
+        if (this.autoPlay) {
+          clearTimeout(this.timer)
+          this._play()
+        }
+      })
+      // this.slider.on('beforeScrollStart', () => {
+      //   if (this.autoPlay) {
+      //     clearTimeout(this.timer)
+      //   }
+      // })
+    },
+    _play() {
+      let pageIndex = this.currentPageIndex + 1
+      if (pageIndex === (this.children.length - (this.loop ? 2 : 0))) {
+        pageIndex = 0
+      }
+      this.timer = setTimeout(() => {
+        this.slider.goToPage(pageIndex, 0, 400)
+      }, this.interval)
     }
   }
 }
