@@ -2,11 +2,12 @@
  * @Author: X_Heart
  * @Date: 2017-12-18 15:33:03
  * @Last Modified by: X_Heart
- * @Last Modified time: 2017-12-24 21:07:23
+ * @Last Modified time: 2017-12-25 15:09:32
  * @description: 推荐相关api
  */
 import jsonp from 'common/js/jsonp'
 import {commonParams, options} from './config'
+import axios from 'axios'
 
 export function getRecommend() {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
@@ -21,7 +22,7 @@ export function getRecommend() {
 }
 
 export function getDiscList() {
-  const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+  const url = '/api/getDiscList'
 
   const data = Object.assign({}, commonParams, {
     picmid: 1,
@@ -29,7 +30,7 @@ export function getDiscList() {
     g_tk: 5381,
     loginUin: 0,
     hostUin: 0,
-    format: 'jsonp',
+    format: 'json',
     notice: 0,
     platform: 'yqq',
     needNewCode: 0,
@@ -39,5 +40,9 @@ export function getDiscList() {
     ein: 29
   })
 
-  return jsonp(url, data, options)
+  return axios.get(url, {
+    params: data
+  }).then((res) => {
+    return Promise.resolve(res.data)
+  })
 }
