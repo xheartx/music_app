@@ -2,7 +2,7 @@
  * @Author: X_Heart
  * @Date: 2017-12-27 10:49:54
  * @Last Modified by: X_Heart
- * @Last Modified time: 2017-12-27 11:36:02
+ * @Last Modified time: 2017-12-28 13:15:58
  * @description: 歌曲类
  */
 export default class Song {
@@ -27,7 +27,7 @@ export function createSong(musicData) {
     album: musicData.albumname,
     duration: musicData.interval,
     image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-    url: `https://dl.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=38`
+    url: `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
   })
 }
 
