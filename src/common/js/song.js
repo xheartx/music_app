@@ -2,9 +2,13 @@
  * @Author: X_Heart
  * @Date: 2017-12-27 10:49:54
  * @Last Modified by: X_Heart
- * @Last Modified time: 2017-12-28 13:15:58
+ * @Last Modified time: 2018-01-02 16:24:38
  * @description: 歌曲类
  */
+import {getLyric} from 'api/song'
+import {ERR_OK} from 'api/config'
+import {Base64} from 'js-base64'
+
 export default class Song {
   constructor({id, mid, singer, name, album, duration, image, url}) {
     this.id = id
@@ -15,6 +19,23 @@ export default class Song {
     this.duration = duration
     this.image = image
     this.url = url
+  }
+
+  getLyric() {
+    if (this.lyric) {
+      return Promise.resolve(this.lyric)
+    }
+
+    return new Promise((resolve, reject) => {
+      getLyric(this.mid).then((res) => {
+        if (res.retcode === ERR_OK) {
+          this.lyric = Base64.decode(res.lyric)
+          resolve(this.lyric)
+        } else {
+          reject(new Error('no lyric'))
+        }
+      })
+    })
   }
 }
 
