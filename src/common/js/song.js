@@ -2,7 +2,7 @@
  * @Author: X_Heart
  * @Date: 2017-12-27 10:49:54
  * @Last Modified by: X_Heart
- * @Last Modified time: 2018-01-02 16:24:38
+ * @Last Modified time: 2018-01-03 16:31:05
  * @description: 歌曲类
  */
 import {getLyric} from 'api/song'
@@ -25,7 +25,6 @@ export default class Song {
     if (this.lyric) {
       return Promise.resolve(this.lyric)
     }
-
     return new Promise((resolve, reject) => {
       getLyric(this.mid).then((res) => {
         if (res.retcode === ERR_OK) {
