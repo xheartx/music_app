@@ -2,7 +2,7 @@
  * @Author: X_Heart
  * @Date: 2017-12-27 10:49:54
  * @Last Modified by: X_Heart
- * @Last Modified time: 2018-01-03 16:31:05
+ * @Last Modified time: 2018-01-04 10:42:16
  * @description: 歌曲类
  */
 import {getLyric} from 'api/song'
