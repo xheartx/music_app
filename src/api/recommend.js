@@ -2,7 +2,7 @@
  * @Author: X_Heart
  * @Date: 2017-12-18 15:33:03
  * @Last Modified by: X_Heart
- * @Last Modified time: 2018-01-03 15:27:16
+ * @Last Modified time: 2018-01-05 13:22:16
  * @description: 推荐相关api
  */
 import jsonp from 'common/js/jsonp'
@@ -56,6 +56,7 @@ export function getSongList(disstid) {
     json: 1,
     utf8: 1,
     onlysong: 0,
+    format: 'json',
     platform: 'yqq',
     hostUin: 0,
     needNewCode: 0

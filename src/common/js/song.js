@@ -2,7 +2,7 @@
  * @Author: X_Heart
  * @Date: 2017-12-27 10:49:54
  * @Last Modified by: X_Heart
- * @Last Modified time: 2018-01-04 10:42:16
+ * @Last Modified time: 2018-01-05 11:00:43
  * @description: 歌曲类
  */
 import {getLyric} from 'api/song'
@@ -47,7 +47,8 @@ export function createSong(musicData) {
     album: musicData.albumname,
     duration: musicData.interval,
     image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-    url: `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
+    url: `http://dl.stream.qqmusic.qq.com/C400${musicData.songmid}.m4a?fromtag=38&vkey=BC6E484CDB98FC5D9E29EE4213C4C214AB3105B0AB930575A254E717D0E54F04BDD2D708B6D9D306448E41AD2284113B18C6A8FBE7FF7DF5&guid=9961836500`
+    // url: `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
   })
 }
 
