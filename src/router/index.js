@@ -1,15 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Recommend from 'components/recommend/recommend'
-import Singer from 'components/singer/singer'
-import Rank from 'components/rank/rank'
-import Search from 'components/search/search'
-import SingerDetail from 'components/singer-detail/singer-detail'
-import Disc from 'components/disc/disc'
-import TopList from 'components/top-list/top-list'
-import UserCenter from 'components/user-center/user-center'
-
 Vue.use(Router)
+
+// const Recommend = (resolve) => {
+//   import('components/recommend/recommend').then((recommend) => {
+//     resolve(recommend)
+//   })
+// }
+
+const Recommend = resolve => require(['components/recommend/recommend'], resolve)
+const Singer = resolve => require(['components/singer/singer'], resolve)
+const Rank = resolve => require(['components/rank/rank'], resolve)
+const Search = resolve => require(['components/search/search'], resolve)
+const SingerDetail = resolve => require(['components/singer-detail/singer-detail'], resolve)
+const Disc = resolve => require(['components/disc/disc'], resolve)
+const TopList = resolve => require(['components/top-list/top-list'], resolve)
+const UserCenter = resolve => require(['components/user-center/user-center'], resolve)
 
 export default new Router({
   routes: [
